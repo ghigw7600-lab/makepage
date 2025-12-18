@@ -1169,18 +1169,14 @@
     .footer__logo {
       display: flex;
       align-items: center;
-      gap: var(--space-3);
       margin-bottom: var(--space-4);
     }
-    
-    .footer__logo-text {
-      font-size: var(--text-lg);
-      font-weight: 700;
-      color: var(--color-white);
-    }
-    
-    .footer__logo-text span {
-      color: var(--color-primary);
+
+    .footer__logo-img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
     
     .footer__desc {
@@ -1863,18 +1859,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <div class="footer__logo">
-            <svg width="32" height="32" viewBox="0 0 42 42" fill="none">
-              <rect x="0" y="0" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="14" y="0" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="28" y="0" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-              <rect x="0" y="14" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="14" y="14" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="28" y="14" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-              <rect x="0" y="28" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="14" y="28" width="12" height="12" fill="#4a8c3b"/>
-              <rect x="28" y="28" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-            </svg>
-            <span class="footer__logo-text">세무회계<span>범</span></span>
+            <img src="assets/logo/beom-logo2.png" alt="세무회계범" class="footer__logo-img">
           </div>
           <p class="footer__desc">
             TAX BEOM - 믿을 수 있는 세무 파트너<br>
