@@ -407,14 +407,12 @@
     }
     
     .hero__feature-icon {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
       background: var(--color-white);
       border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-lg);
+      padding: var(--space-2);
       box-shadow: var(--shadow-sm);
     }
     
@@ -644,14 +642,12 @@
     }
     
     .trust__icon {
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
       background: var(--color-gray-100);
       border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-xl);
+      padding: var(--space-3);
     }
     
     .trust__text {
@@ -724,14 +720,12 @@
     }
     
     .guide__card-icon {
-      width: 56px;
-      height: 56px;
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
       background: rgba(74, 140, 59, 0.2);
       border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--text-2xl);
+      padding: var(--space-4);
       margin-bottom: var(--space-5);
     }
     
@@ -888,7 +882,9 @@
     }
     
     .about__photo-icon {
-      font-size: 120px;
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
       margin-bottom: var(--space-4);
     }
     
@@ -969,15 +965,9 @@
     }
     
     .about__list-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--color-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: var(--text-sm);
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
       flex-shrink: 0;
     }
     
@@ -1663,14 +1653,14 @@
           </div>
           <div class="hero__features">
             <div class="hero__feature">
-              <div class="hero__feature-icon">✓</div>
+              <img src="assets/icons/checklist-search.png" alt="투명한 업무 처리" class="hero__feature-icon" width="48" height="48">
               <div class="hero__feature-text">
                 <strong>대표세무사 직접 상담</strong>
                 믿을 수 있는 1:1 서비스
               </div>
             </div>
             <div class="hero__feature">
-              <div class="hero__feature-icon">⚡</div>
+              <img src="assets/icons/lightning.png" alt="신속한 업무처리" class="hero__feature-icon" width="48" height="48">
               <div class="hero__feature-text">
                 <strong>신속한 업무 처리</strong>
                 빠르고 정확하게
@@ -1686,21 +1676,21 @@
     <div class="container">
       <div class="trust__inner">
         <div class="trust__item">
-          <div class="trust__icon">👩‍💼</div>
+          <img src="assets/icons/consultant.png" alt="전담 세무사" class="trust__icon" width="64" height="64">
           <div class="trust__text">
             <strong>대표 세무사 직접 상담</strong>
             담당자가 바뀌지 않습니다
           </div>
         </div>
         <div class="trust__item">
-          <div class="trust__icon">💬</div>
+          <img src="assets/icons/chat-heart.png" alt="실시간 상담" class="trust__icon" width="64" height="64">
           <div class="trust__text">
             <strong>카카오톡 실시간 상담</strong>
             궁금할 때 바로 문의
           </div>
         </div>
         <div class="trust__item">
-          <div class="trust__icon">📊</div>
+          <img src="assets/icons/checklist-search.png" alt="투명한 업무" class="trust__icon" width="64" height="64">
           <div class="trust__text">
             <strong>투명한 업무 처리</strong>
             진행 상황 실시간 공유
@@ -1720,21 +1710,21 @@
       </div>
       <div class="guide__grid">
         <div class="guide__card">
-          <div class="guide__card-icon">❓</div>
+          <img src="assets/icons/question-bulb.png" alt="세무업무 처음" class="guide__card-icon" width="80" height="80">
           <h3 class="guide__card-title">세무 업무가 처음이신가요?</h3>
           <p class="guide__card-desc">
             창업 후 세금 신고, 장부 작성, 부가세... 뭐부터 해야 할지 막막하신 분들을 위한 맞춤 가이드를 제공합니다.
           </p>
         </div>
         <div class="guide__card">
-          <div class="guide__card-icon">📋</div>
+          <img src="assets/icons/doc-calculator.png" alt="세무 신고" class="guide__card-icon" width="80" height="80">
           <h3 class="guide__card-title">기장료가 부담되시나요?</h3>
           <p class="guide__card-desc">
             직접 해보려 했지만 생각보다 복잡하고 시간이 오래 걸리시나요? 합리적인 비용으로 전문가가 처리해드립니다.
           </p>
         </div>
         <div class="guide__card">
-          <div class="guide__card-icon">⏰</div>
+          <img src="assets/icons/lightning.png" alt="빠른 대응" class="guide__card-icon" width="80" height="80">
           <h3 class="guide__card-title">사업에만 집중하고 싶으신가요?</h3>
           <p class="guide__card-desc">
             세금 걱정 없이 본업에만 집중하세요. 기장부터 신고까지 모든 세무 업무를 대신 처리해드립니다.
@@ -1793,7 +1783,7 @@
       <div class="about__inner">
         <div class="about__photo">
           <div class="about__photo-main">
-            <div class="about__photo-icon">👩‍💼</div>
+            <img src="assets/icons/consultant.png" alt="유혜민 세무사" class="about__photo-icon" width="96" height="96">
             <div class="about__photo-name">유혜민 세무사</div>
             <div class="about__photo-role">세무회계범 대표</div>
           </div>
@@ -1808,15 +1798,15 @@
           </p>
           <div class="about__list">
             <div class="about__list-item">
-              <span class="about__list-icon">✓</span>
+              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
               창업 및 스타트업 세무 전문
             </div>
             <div class="about__list-item">
-              <span class="about__list-icon">✓</span>
+              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
               대표세무사 직접 상담 및 관리
             </div>
             <div class="about__list-item">
-              <span class="about__list-icon">✓</span>
+              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
               신속하고 정확한 업무 처리
             </div>
           </div>
