@@ -187,18 +187,11 @@
       gap: var(--space-3);
     }
     
-    .nav__logo-icon {
-      display: flex;
-    }
-    
-    .nav__logo-text {
-      font-size: var(--text-lg);
-      font-weight: 700;
-      color: var(--color-gray-900);
-    }
-    
-    .nav__logo-text span {
-      color: var(--color-primary);
+    .nav__logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
     
     .nav__links {
@@ -1586,20 +1579,7 @@
   <nav class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#" class="nav__logo">
-        <div class="nav__logo-icon">
-          <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
-            <rect x="0" y="0" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="14" y="0" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="28" y="0" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-            <rect x="0" y="14" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="14" y="14" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="28" y="14" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-            <rect x="0" y="28" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="14" y="28" width="12" height="12" fill="#4a8c3b"/>
-            <rect x="28" y="28" width="12" height="12" fill="none" stroke="#4a8c3b" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <span class="nav__logo-text">세무회계<span>범</span></span>
+        <img src="assets/logo/beom-logo2.png" alt="세무회계범" class="nav__logo-img">
       </a>
       <div class="nav__links">
         <a href="#guide" class="nav__link">세무가이드</a>
