@@ -345,13 +345,42 @@
       freelancer: '프리랜서'
     };
 
-    function loadData() {
+    function loadFromLocalStorage() {
       const data = localStorage.getItem('taxBeomDB');
       allData = data ? JSON.parse(data) : [];
       allData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
       updateStats();
       filterData();
+    }
+
+    function loadData() {
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8w3wne5oeiu1NaSrm0qfKX2vlM-Ea8lzZ6y0hEzJHp-UYTND9PGCoJ7KN8e26bwz9zA/exec';
+
+      console.log('[Admin] Google Sheets에서 데이터 로드 시작...');
+
+      // Google Sheets에서 데이터 가져오기
+      fetch(GOOGLE_SCRIPT_URL)
+        .then(response => response.json())
+        .then(result => {
+          if (result.success) {
+            console.log('[Admin] Google Sheets 데이터 로드 성공:', result.data.length + '건');
+            allData = result.data;
+            allData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            updateStats();
+            filterData();
+          } else {
+            console.error('[Admin] Google Sheets 데이터 로드 실패:', result.error);
+            // 실패 시 LocalStorage 백업 사용
+            console.log('[Admin] LocalStorage 백업 데이터 사용');
+            loadFromLocalStorage();
+          }
+        })
+        .catch(error => {
+          console.error('[Admin] 네트워크 오류:', error);
+          // 네트워크 오류 시 LocalStorage 백업 사용
+          console.log('[Admin] LocalStorage 백업 데이터 사용');
+          loadFromLocalStorage();
+        });
     }
 
     function updateStats() {

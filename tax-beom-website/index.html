@@ -12,12 +12,23 @@
   <meta property="og:title" content="세무회계 범 | 전문 세무사 1:1 매칭 서비스">
   <meta property="og:description" content="창업 및 스타트업 전문 세무사. 대표세무사가 직접 상담합니다.">
   <meta property="og:site_name" content="세무회계 범">
+  <meta property="og:image" content="https://tax-beom.netlify.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="세무회계 범 - 전문 세무사 1:1 매칭 서비스">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="세무회계 범 | 전문 세무사 1:1 매칭 서비스">
   <meta name="twitter:description" content="창업 및 스타트업 전문 세무사. 대표세무사가 직접 상담합니다.">
-  
+  <meta name="twitter:image" content="https://tax-beom.netlify.app/assets/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1468,7 +1479,44 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 25px rgba(74, 140, 59, 0.5);
     }
-    
+
+    /* Floating KakaoTalk Button */
+    .floating-kakao {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      bottom: calc(var(--space-6) + 60px); /* floating-cta 위에 배치 */
+      z-index: 1499;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: #FEE500; /* 카카오톡 공식 색상 */
+      color: #3C1E1E;
+      padding: var(--space-3) var(--space-5);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(254, 229, 0, 0.4);
+      transition: var(--transition-fast);
+    }
+
+    .floating-kakao:hover {
+      background: #FFE812;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(254, 229, 0, 0.5);
+    }
+
+    .floating-kakao svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .floating-kakao span {
+      white-space: nowrap;
+    }
+
     /* ========================================
        RESPONSIVE
        ======================================== */
@@ -1627,10 +1675,22 @@
         right: var(--space-4);
         left: var(--space-4);
       }
-      
+
       .floating-cta__btn {
         width: 100%;
         justify-content: center;
+        min-height: 52px; /* 터치 영역 최적화 */
+      }
+
+      .floating-kakao {
+        bottom: calc(var(--space-4) + 68px); /* 모바일 floating-cta 위 */
+        right: var(--space-4);
+        padding: var(--space-3) var(--space-4);
+        min-height: 52px; /* 터치 영역 최적화 */
+      }
+
+      .floating-kakao span {
+        font-size: 13px;
       }
     }
   </style>
@@ -1640,7 +1700,7 @@
   <nav class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#" class="nav__logo">
-        <img src="assets/logo/beom-logo1.png" alt="세무회계 범" class="nav__logo-img">
+        <img src="assets/logo/beom-logo1.webp" alt="세무회계 범" class="nav__logo-img">
       </a>
       <div class="nav__links">
         <a href="#guide" class="nav__link">세무가이드</a>
@@ -1684,14 +1744,14 @@
           </div>
           <div class="hero__features">
             <div class="hero__feature">
-              <img src="assets/icons/consultant.png" alt="대표세무사 직접 상담" class="hero__feature-icon" width="48" height="48">
+              <img src="assets/icons/consultant.webp" alt="대표세무사 직접 상담" class="hero__feature-icon" width="48" height="48" loading="lazy">
               <div class="hero__feature-text">
                 <strong>대표세무사 직접 상담</strong>
                 믿을 수 있는 1:1 서비스
               </div>
             </div>
             <div class="hero__feature">
-              <img src="assets/icons/lightning.png" alt="신속한 업무처리" class="hero__feature-icon" width="48" height="48">
+              <img src="assets/icons/lightning.webp" alt="신속한 업무처리" class="hero__feature-icon" width="48" height="48" loading="lazy">
               <div class="hero__feature-text">
                 <strong>신속한 업무 처리</strong>
                 빠르고 정확하게
@@ -1707,21 +1767,21 @@
     <div class="container">
       <div class="trust__inner">
         <div class="trust__item">
-          <img src="assets/icons/consultant.png" alt="전담 세무사" class="trust__icon" width="64" height="64">
+          <img src="assets/icons/consultant.webp" alt="전담 세무사" class="trust__icon" width="64" height="64" loading="lazy">
           <div class="trust__text">
             <strong>대표 세무사 직접 상담</strong>
             담당자가 바뀌지 않습니다
           </div>
         </div>
         <div class="trust__item">
-          <img src="assets/icons/chat-heart.png" alt="실시간 상담" class="trust__icon" width="64" height="64">
+          <img src="assets/icons/chat-heart.webp" alt="실시간 상담" class="trust__icon" width="64" height="64" loading="lazy">
           <div class="trust__text">
             <strong>카카오톡 실시간 상담</strong>
             궁금할 때 바로 문의
           </div>
         </div>
         <div class="trust__item">
-          <img src="assets/icons/checklist-search.png" alt="투명한 업무" class="trust__icon" width="64" height="64">
+          <img src="assets/icons/checklist-search.webp" alt="투명한 업무" class="trust__icon" width="64" height="64" loading="lazy">
           <div class="trust__text">
             <strong>투명한 업무 처리</strong>
             진행 상황 실시간 공유
@@ -1741,21 +1801,21 @@
       </div>
       <div class="guide__grid">
         <div class="guide__card">
-          <img src="assets/icons/question-bulb.png" alt="세무업무 처음" class="guide__card-icon" width="80" height="80">
+          <img src="assets/icons/question-bulb.webp" alt="세무업무 처음" class="guide__card-icon" width="80" height="80" loading="lazy">
           <h3 class="guide__card-title">세무 업무가 처음이신가요?</h3>
           <p class="guide__card-desc">
             창업 후 세금 신고, 장부 작성, 부가세... 뭐부터 해야 할지 막막하신 분들을 위한 맞춤 가이드를 제공합니다.
           </p>
         </div>
         <div class="guide__card">
-          <img src="assets/icons/doc-calculator.png" alt="세무 신고" class="guide__card-icon" width="80" height="80">
+          <img src="assets/icons/doc-calculator.webp" alt="세무 신고" class="guide__card-icon" width="80" height="80" loading="lazy">
           <h3 class="guide__card-title">기장료가 부담되시나요?</h3>
           <p class="guide__card-desc">
             직접 해보려 했지만 생각보다 복잡하고 시간이 오래 걸리시나요? 합리적인 비용으로 전문가가 처리해드립니다.
           </p>
         </div>
         <div class="guide__card">
-          <img src="assets/icons/consultant.png" alt="대표세무사 직접 상담" class="guide__card-icon" width="80" height="80">
+          <img src="assets/icons/consultant.webp" alt="대표세무사 직접 상담" class="guide__card-icon" width="80" height="80" loading="lazy">
           <h3 class="guide__card-title">사업에만 집중하고 싶으신가요?</h3>
           <p class="guide__card-desc">
             세금 걱정 없이 본업에만 집중하세요. 기장부터 신고까지 모든 세무 업무를 대신 처리해드립니다.
@@ -1814,7 +1874,7 @@
       <div class="about__inner">
         <div class="about__photo">
           <div class="about__photo-main">
-            <img src="assets/photos/ceo.jpg" alt="유혜민 세무사" class="about__photo-icon" width="96" height="96">
+            <img src="assets/photos/ceo.webp" alt="유혜민 세무사" class="about__photo-icon" width="96" height="96" loading="lazy">
             <div class="about__photo-name">유혜민 세무사</div>
             <div class="about__photo-role">세무회계 범 대표</div>
           </div>
@@ -1829,15 +1889,15 @@
           </p>
           <div class="about__list">
             <div class="about__list-item">
-              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
+              <img src="assets/icons/checklist-search.webp" alt="체크" class="about__list-icon" width="20" height="20" loading="lazy">
               창업 및 스타트업 세무 전문
             </div>
             <div class="about__list-item">
-              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
+              <img src="assets/icons/checklist-search.webp" alt="체크" class="about__list-icon" width="20" height="20" loading="lazy">
               대표세무사 직접 상담 및 관리
             </div>
             <div class="about__list-item">
-              <img src="assets/icons/checklist-search.png" alt="체크" class="about__list-icon" width="20" height="20">
+              <img src="assets/icons/checklist-search.webp" alt="체크" class="about__list-icon" width="20" height="20" loading="lazy">
               신속하고 정확한 업무 처리
             </div>
           </div>
@@ -1924,7 +1984,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <div class="footer__logo">
-            <img src="assets/logo/beom-logo1-white.png" alt="세무회계 범" class="footer__logo-img">
+            <img src="assets/logo/beom-logo1-white.webp" alt="세무회계 범" class="footer__logo-img">
           </div>
           <p class="footer__desc">
             세무회계 범 | 세무 기장 및 세금 신고<br>
@@ -1947,7 +2007,7 @@
         <p style="margin-top: 1rem;">© 2025 세무회계 범. All rights reserved.</p>
         <div class="footer__legal">
           <a href="#" onclick="openTerms('service')">이용약관</a>
-          <a href="#" onclick="openTerms('privacy')">개인정보처리방침</a>
+          <a href="개인정보처리방침.html" target="_blank">개인정보처리방침</a>
         </div>
       </div>
     </div>
@@ -1959,6 +2019,14 @@
       무료 상담 신청
     </button>
   </div>
+
+  <!-- Floating KakaoTalk Button -->
+  <a href="http://pf.kakao.com/_txosWn" target="_blank" rel="noopener noreferrer" class="floating-kakao">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 0C6.26875 0 0 5.28125 0 11.8125C0 15.8906 2.625 19.4375 6.5625 21.4375L5.25 27.125C5.15625 27.5 5.53125 27.7812 5.84375 27.5938L12.7188 23.1875C13.1562 23.25 13.5625 23.25 14 23.25C21.7312 23.25 28 17.9688 28 11.4375C28 4.90625 21.7312 0 14 0Z" fill="currentColor"/>
+    </svg>
+    <span>카카오톡 상담</span>
+  </a>
 
   <!-- Modal Overlay -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
@@ -2161,6 +2229,31 @@
     }
 
     // Form Submit
+    // 성공 로그 저장
+    function saveSuccessLog(data) {
+      const logs = JSON.parse(localStorage.getItem('submissionSuccessLogs') || '[]');
+      logs.push({
+        timestamp: new Date().toISOString(),
+        type: 'success',
+        data: data
+      });
+      if (logs.length > 100) logs.shift();
+      localStorage.setItem('submissionSuccessLogs', JSON.stringify(logs));
+    }
+
+    // 에러 로그 저장
+    function saveErrorLog(error, data) {
+      const logs = JSON.parse(localStorage.getItem('submissionErrorLogs') || '[]');
+      logs.push({
+        timestamp: new Date().toISOString(),
+        type: 'error',
+        error: error.toString(),
+        data: data
+      });
+      if (logs.length > 100) logs.shift();
+      localStorage.setItem('submissionErrorLogs', JSON.stringify(logs));
+    }
+
     function submitForm(e) {
       e.preventDefault();
       const form = e.target;
@@ -2172,6 +2265,10 @@
       // Google Sheets 웹 앱 URL
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8w3wne5oeiu1NaSrm0qfKX2vlM-Ea8lzZ6y0hEzJHp-UYTND9PGCoJ7KN8e26bwz9zA/exec';
 
+      // 로그: 전송 시작
+      console.log('[상담 신청] 전송 시작:', new Date().toISOString());
+      console.log('[상담 신청] 데이터:', data);
+
       // Google Sheets로 전송
       fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -2180,23 +2277,38 @@
         body: JSON.stringify(data)
       })
       .then(() => {
+        // 로그: 전송 완료
+        console.log('[상담 신청] 전송 완료:', new Date().toISOString());
+
         // 백업: LocalStorage에도 저장
         const submissions = JSON.parse(localStorage.getItem('taxBeomDB') || '[]');
         submissions.push(data);
         localStorage.setItem('taxBeomDB', JSON.stringify(submissions));
+        console.log('[상담 신청] LocalStorage 백업 완료');
+
+        // 성공 로그 저장
+        saveSuccessLog(data);
 
         alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
         form.reset();
         closeModal();
       })
       .catch(error => {
-        console.error('Error:', error);
+        // 로그: 에러 발생
+        console.error('[상담 신청] 에러 발생:', new Date().toISOString());
+        console.error('[상담 신청] 에러 내용:', error);
+        console.error('[상담 신청] 전송 데이터:', data);
+
         // 오류 시에도 백업
         const submissions = JSON.parse(localStorage.getItem('taxBeomDB') || '[]');
         submissions.push(data);
         localStorage.setItem('taxBeomDB', JSON.stringify(submissions));
+        console.log('[상담 신청] LocalStorage 백업 완료 (에러 발생 시)');
 
-        alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+        // 에러 로그 저장
+        saveErrorLog(error, data);
+
+        alert('상담 신청이 접수되었습니다.\n네트워크 상태가 불안정할 수 있으니\n문의사항이 있으시면 직접 연락 주시기 바랍니다.\n\n전화: 010-8798-9926');
         form.reset();
         closeModal();
       });
