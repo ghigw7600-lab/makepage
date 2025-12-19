@@ -2166,17 +2166,40 @@
       const form = e.target;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      
-      // LocalStorage에 저장 (실제로는 서버로 전송)
-      const submissions = JSON.parse(localStorage.getItem('taxBeomDB') || '[]');
       data.timestamp = new Date().toISOString();
       data.id = Date.now();
-      submissions.push(data);
-      localStorage.setItem('taxBeomDB', JSON.stringify(submissions));
-      
-      alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
-      form.reset();
-      closeModal();
+
+      // Google Sheets 웹 앱 URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8w3wne5oeiu1NaSrm0qfKX2vlM-Ea8lzZ6y0hEzJHp-UYTND9PGCoJ7KN8e26bwz9zA/exec';
+
+      // Google Sheets로 전송
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        // 백업: LocalStorage에도 저장
+        const submissions = JSON.parse(localStorage.getItem('taxBeomDB') || '[]');
+        submissions.push(data);
+        localStorage.setItem('taxBeomDB', JSON.stringify(submissions));
+
+        alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+        form.reset();
+        closeModal();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // 오류 시에도 백업
+        const submissions = JSON.parse(localStorage.getItem('taxBeomDB') || '[]');
+        submissions.push(data);
+        localStorage.setItem('taxBeomDB', JSON.stringify(submissions));
+
+        alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.');
+        form.reset();
+        closeModal();
+      });
     }
 
     // Smooth Scroll
