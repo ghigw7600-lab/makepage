@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <!-- 송림 스타일 로고 (흰색 버전): 3줄 가로선 + 텍스트 -->
+
+  <!-- 아이콘: 3줄 가로선 (흰색) -->
+  <g fill="#ffffff">
+    <!-- 상단 긴 선 -->
+    <rect x="0" y="8" width="28" height="4" rx="1"/>
+    <!-- 중간 긴 선 -->
+    <rect x="0" y="18" width="28" height="4" rx="1"/>
+    <!-- 하단 짧은 선 2개 -->
+    <rect x="0" y="28" width="12" height="4" rx="1"/>
+    <rect x="16" y="28" width="12" height="4" rx="1"/>
+  </g>
+
+  <!-- 한글 텍스트 -->
+  <text x="38" y="18" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="16" font-weight="700" fill="#ffffff">엘림세무회계컨설팅</text>
+
+  <!-- 영문 텍스트 -->
+  <text x="38" y="32" font-family="Arial, sans-serif" font-size="9" font-weight="400" fill="rgba(255,255,255,0.8)" letter-spacing="1.5">ELIMTAX CONSULTING</text>
+</svg>

@@ -27,13 +27,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/android-chrome-512x512.png">
 
-    <!-- Fonts - 송림과 동일 -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ========== RESET & BASE ========== */
+        /* ========== RESET & BASE - 송림 동일 ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -68,23 +68,16 @@
             padding: 0 40px;
         }
 
-        /* ========== HEADER - 송림 동일 ========== */
+        /* ========== HEADER - 송림 100% 동일 ========== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 96px;
+            height: 72px;
             background: var(--bg-white);
             z-index: 1000;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .header.scrolled {
-            height: 80px;
-            border-bottom-color: var(--border);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--border);
         }
 
         .header-inner {
@@ -97,69 +90,61 @@
             justify-content: space-between;
         }
 
-        /* 로고 */
+        /* 로고 - 송림 스타일 (3줄 가로선) */
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .logo-icon .bg {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #1a5cb8;
-            border-radius: 4px;
+        .logo-icon .line {
+            height: 3px;
+            background: var(--primary);
+            border-radius: 1px;
         }
 
-        .logo-icon .large {
-            position: absolute;
-            bottom: 3px;
-            left: 3px;
-            width: 24px;
-            height: 26px;
-            background: #5ba3e0;
-            border-radius: 2px;
+        .logo-icon .line-1 { width: 24px; }
+        .logo-icon .line-2 { width: 24px; }
+        .logo-icon .line-3 {
+            display: flex;
+            gap: 4px;
         }
-
-        .logo-icon .small {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            width: 17px;
-            height: 17px;
-            background: #4ecdc4;
-            border-radius: 2px;
+        .logo-icon .line-3 span {
+            width: 10px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 1px;
         }
 
         .logo-text {
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 0;
         }
 
         .logo-text .ko {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 700;
             color: #1a3a5c;
             letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         .logo-text .en {
-            font-size: 8px;
+            font-size: 9px;
             font-weight: 400;
-            color: #1a5cb8;
-            letter-spacing: 1.2px;
+            color: var(--primary);
+            letter-spacing: 1px;
             font-family: 'Poppins', sans-serif;
         }
 
-        /* 네비게이션 */
+        /* 네비게이션 - 송림 동일 */
         .nav {
             display: flex;
             align-items: center;
@@ -172,14 +157,15 @@
 
         .nav-menu li a {
             display: block;
-            padding: 10px 20px;
+            padding: 10px 18px;
             font-size: 15px;
             font-weight: 500;
             color: var(--text-dark);
             transition: color 0.2s;
         }
 
-        .nav-menu li a:hover {
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
             color: var(--primary);
         }
 
@@ -188,19 +174,17 @@
             align-items: center;
             justify-content: center;
             margin-left: 15px;
-            padding: 11px 22px;
+            padding: 10px 20px;
             background: var(--primary);
             color: #fff;
             font-size: 14px;
             font-weight: 500;
-            border-radius: 24px;
+            border-radius: 6px;
             transition: all 0.3s;
         }
 
         .btn-consult:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30,94,225,0.3);
         }
 
         /* 모바일 토글 */
@@ -216,474 +200,378 @@
             width: 22px;
             height: 2px;
             background: var(--text-dark);
-            transition: 0.3s;
         }
 
-        /* ========== HERO - 팀 사진 섹션 ========== */
-        .hero {
-            margin-top: 96px;
-            background: var(--bg-light);
-            padding: 60px 0 80px;
+        /* ========== 서비스 소개 섹션 - 송림 동일 (2컬럼 카드) ========== */
+        .service-intro {
+            margin-top: 72px;
+            padding: 80px 0;
+            background: var(--bg-white);
         }
 
-        .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .team-photo {
-            width: 100%;
-            border-radius: 0;
-            overflow: hidden;
-        }
-
-        .team-photo img {
-            width: 100%;
-            display: block;
-        }
-
-        /* 송림 팀사진 직접 사용 */
-        .team-photo-img {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background-image: url('https://songrimtax.com/file/2024051022/o_1htq3l01d12u91e2m1iqj14o51l7t9.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* ========== 섹션 공통 스타일 ========== */
-        .section {
-            padding: 100px 0;
-        }
-
-        .section-header {
+        .service-intro-header {
             text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .section-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--text-dark);
             margin-bottom: 16px;
-            line-height: 1.3;
         }
 
-        .section-desc {
+        .service-intro-header p {
             font-size: 16px;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* ========== 세무 서비스 섹션 ========== */
-        .services {
-            background: var(--bg-white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .service-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(30,94,225,0.1);
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            background: var(--primary-light);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-        }
-
-        .service-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .service-card p {
-            font-size: 14px;
             color: var(--text-gray);
             line-height: 1.6;
         }
 
-        /* ========== 올인원 서비스 섹션 ========== */
-        .allinone {
-            background: var(--bg-light);
+        .service-intro-header p span {
+            color: var(--primary);
+            font-weight: 600;
         }
 
-        .allinone-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .service-cards {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 0;
+            margin-top: 60px;
         }
 
-        .allinone-content .section-label {
-            text-align: left;
+        .service-card {
+            flex: 1;
+            max-width: 400px;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
-        .allinone-content .section-title {
-            text-align: left;
-            font-size: 32px;
+        .service-card-header {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 24px 20px;
         }
 
-        .allinone-content .section-desc {
-            text-align: left;
-            margin-bottom: 30px;
+        .service-card-header h3 {
+            font-size: 22px;
+            font-weight: 700;
         }
 
-        .allinone-list {
+        .service-card-body {
+            padding: 30px 30px 40px;
+            background: #fff;
+        }
+
+        .service-card-body ul {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        .allinone-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 20px;
-            background: var(--bg-white);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .allinone-item:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .allinone-item-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--primary);
-            border-radius: 12px;
+        .service-card-body li {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-
-        .allinone-item h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .allinone-item p {
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        .allinone-image {
-            position: relative;
-        }
-
-        .allinone-image-box {
-            width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        /* ========== 엘림 피플 섹션 ========== */
-        .people {
-            background: var(--bg-white);
-        }
-
-        .people-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .people-card {
-            text-align: center;
-        }
-
-        .people-photo {
-            width: 100%;
-            aspect-ratio: 1;
-            background: var(--bg-light);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-
-        .people-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .people-card h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .people-card span {
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        /* ========== 요금제 섹션 ========== */
-        .pricing {
-            background: var(--bg-light);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .pricing-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .pricing-card.popular {
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(30,94,225,0.15);
-        }
-
-        .pricing-card.popular::before {
-            content: '추천';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: #fff;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 5px 16px;
-            border-radius: 12px;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .pricing-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .pricing-price {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-
-        .pricing-price span {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--text-gray);
-        }
-
-        .pricing-desc {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin-bottom: 24px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-features {
-            text-align: left;
-            margin-bottom: 24px;
-        }
-
-        .pricing-features li {
-            padding: 8px 0;
-            font-size: 14px;
-            color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .pricing-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: var(--bg-light);
-            color: var(--text-dark);
+            gap: 12px;
             font-size: 15px;
-            font-weight: 600;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+            color: var(--text-dark);
         }
 
-        .pricing-card.popular .pricing-btn {
+        .service-card-body li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
             background: var(--primary);
-            color: #fff;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        .pricing-btn:hover {
-            background: var(--primary);
-            color: #fff;
+        .service-plus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
         }
 
-        /* ========== 칼럼 섹션 ========== */
-        .column {
-            background: var(--bg-white);
-        }
-
-        .column-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .column-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .column-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
-        }
-
-        .column-thumb {
-            width: 100%;
-            aspect-ratio: 16/10;
-            background: var(--bg-light);
-        }
-
-        .column-content {
-            padding: 24px;
-        }
-
-        .column-tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 500;
+        .service-plus span {
+            font-size: 48px;
+            font-weight: 300;
             color: var(--primary);
-            background: var(--primary-light);
-            padding: 4px 10px;
-            border-radius: 4px;
-            margin-bottom: 12px;
         }
 
-        .column-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .column-card p {
-            font-size: 14px;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .column-date {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 16px;
-        }
-
-        /* ========== 세금환급 섹션 ========== */
-        .refund {
-            background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
-            color: #fff;
+        .service-cta {
             text-align: center;
+            margin-top: 50px;
         }
 
-        .refund .section-label {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .refund .section-title {
-            color: #fff;
-        }
-
-        .refund .section-desc {
-            color: rgba(255,255,255,0.9);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .refund-btn {
+        .service-cta .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 36px;
-            background: #fff;
-            color: var(--primary);
+            padding: 16px 40px;
+            background: var(--primary);
+            color: #fff;
             font-size: 16px;
             font-weight: 600;
             border-radius: 30px;
             transition: all 0.3s;
         }
 
-        .refund-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        .service-cta .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ========== 업종 태그 섹션 - 송림 동일 ========== */
+        .industry-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+        }
+
+        .industry-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .industry-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .industry-header h2 span {
+            color: var(--primary);
+        }
+
+        .industry-header p {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .industry-tags {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .industry-tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 16px;
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .industry-tag:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ========== 절세 사례 섹션 - 송림 동일 ========== */
+        .case-section {
+            padding: 100px 0;
+            background: var(--bg-white);
+        }
+
+        .case-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .case-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .case-header h2 .highlight {
+            background: linear-gradient(transparent 60%, #fff3cd 60%);
+            padding: 0 4px;
+        }
+
+        .case-header p {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .case-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .case-card-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--bg-light);
+        }
+
+        .case-card-info {
+            padding: 30px;
+        }
+
+        .case-card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .case-card-title h4 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .case-card-title .tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .case-card-title .tag {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .case-card-result {
+            margin-bottom: 20px;
+        }
+
+        .case-card-result .label {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 4px;
+        }
+
+        .case-card-result .value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .case-card-result .value span {
+            font-size: 24px;
+        }
+
+        .case-card-details {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .case-card-details li {
+            margin-bottom: 4px;
+        }
+
+        .case-card-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-light);
+            min-height: 200px;
+        }
+
+        /* 일러스트 플레이스홀더 */
+        .case-card-image .placeholder {
+            width: 120px;
+            height: 150px;
+            background: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .case-card-image img {
+            max-width: 150px;
+            max-height: 180px;
+            object-fit: contain;
+        }
+
+        .case-card-points {
+            background: #fff;
+            padding: 24px 30px;
+        }
+
+        .case-card-points h5 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .case-card-points ol {
+            padding-left: 20px;
+        }
+
+        .case-card-points li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .case-card-points li strong {
+            display: block;
+            color: var(--text-dark);
+        }
+
+        .case-card-points li span {
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+
+        /* 절세 금액 요약 */
+        .case-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px dashed var(--border);
+        }
+
+        .case-summary-item {
+            text-align: center;
+        }
+
+        .case-summary-item .label {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .case-summary-item .amount {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .case-summary-item .amount span {
+            font-size: 20px;
+            color: var(--text-dark);
         }
 
         /* ========== 상담예약 섹션 ========== */
-        .contact {
+        .contact-section {
+            padding: 100px 0;
             background: var(--bg-light);
         }
 
@@ -694,14 +582,17 @@
             align-items: start;
         }
 
-        .contact-info .section-label,
-        .contact-info .section-title,
-        .contact-info .section-desc {
-            text-align: left;
+        .contact-info h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
         }
 
-        .contact-info .section-desc {
+        .contact-info p {
+            font-size: 16px;
+            color: var(--text-gray);
             margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         .contact-list {
@@ -843,41 +734,32 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .footer-logo-icon {
-            width: 36px;
-            height: 36px;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
         }
 
-        .footer-logo-icon .bg {
-            position: absolute;
-            width: 36px;
-            height: 36px;
-            background: #1a5cb8;
-            border-radius: 3px;
+        .footer-logo-icon .line {
+            height: 2px;
+            background: #fff;
+            border-radius: 1px;
         }
 
-        .footer-logo-icon .large {
-            position: absolute;
-            bottom: 2px;
-            left: 2px;
-            width: 22px;
-            height: 24px;
-            background: #5ba3e0;
-            border-radius: 2px;
+        .footer-logo-icon .line-1 { width: 20px; }
+        .footer-logo-icon .line-2 { width: 20px; }
+        .footer-logo-icon .line-3 {
+            display: flex;
+            gap: 3px;
         }
-
-        .footer-logo-icon .small {
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 15px;
-            height: 15px;
-            background: #4ecdc4;
-            border-radius: 2px;
+        .footer-logo-icon .line-3 span {
+            width: 8px;
+            height: 2px;
+            background: #fff;
+            border-radius: 1px;
         }
 
         .footer-logo-text {
@@ -920,10 +802,10 @@
         .mobile-nav {
             display: none;
             position: fixed;
-            top: 96px;
+            top: 72px;
             left: 0;
             width: 100%;
-            height: calc(100vh - 96px);
+            height: calc(100vh - 72px);
             background: #fff;
             z-index: 999;
             padding: 30px 20px;
@@ -953,40 +835,35 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
-            .container, .header-inner, .hero-inner, .footer-inner {
+            .container, .header-inner, .footer-inner {
                 padding: 0 24px;
             }
 
-            .services-grid,
-            .pricing-grid,
-            .column-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .service-cards {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .people-grid {
+            .service-plus {
+                transform: rotate(90deg);
+                padding: 20px 0;
+            }
+
+            .industry-tags {
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .allinone-grid,
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
-            .section-title {
-                font-size: 30px;
-            }
         }
 
         @media (max-width: 768px) {
-            .header {
-                height: 70px;
-            }
-
-            .header.scrolled {
-                height: 60px;
-            }
-
             .nav {
                 display: none;
             }
@@ -997,31 +874,27 @@
 
             .mobile-nav {
                 display: block;
-                top: 70px;
-                height: calc(100vh - 70px);
             }
 
-            .hero {
-                margin-top: 70px;
-                padding: 30px 0 50px;
-            }
-
-            .section {
+            .service-intro {
                 padding: 60px 0;
             }
 
-            .section-title {
-                font-size: 26px;
+            .industry-tags {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .services-grid,
-            .pricing-grid,
-            .column-grid {
+            .case-card-main {
                 grid-template-columns: 1fr;
             }
 
-            .people-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .case-card-image {
+                min-height: 150px;
+            }
+
+            .case-summary {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .form-row {
@@ -1041,14 +914,17 @@
     </style>
 </head>
 <body>
-    <!-- ========== HEADER ========== -->
-    <header class="header" id="header">
+    <!-- ========== HEADER - 송림 동일 ========== -->
+    <header class="header">
         <div class="header-inner">
             <a href="/" class="logo">
                 <div class="logo-icon">
-                    <div class="bg"></div>
-                    <div class="large"></div>
-                    <div class="small"></div>
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line-3">
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
                 <div class="logo-text">
                     <span class="ko">엘림세무회계컨설팅</span>
@@ -1058,7 +934,7 @@
 
             <nav class="nav">
                 <ul class="nav-menu">
-                    <li><a href="#services">세무 서비스</a></li>
+                    <li><a href="#services" class="active">세무 서비스</a></li>
                     <li><a href="#allinone">올인원 서비스</a></li>
                     <li><a href="#people">엘림 피플</a></li>
                     <li><a href="#pricing">요금제</a></li>
@@ -1089,255 +965,289 @@
         <a href="#contact" class="btn-consult">상담예약하기</a>
     </nav>
 
-    <!-- ========== HERO - 팀 사진 ========== -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="team-photo">
-                <!-- 송림 팀사진과 동일한 레이아웃 -->
-                <div class="team-photo-img"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== 세무 서비스 ========== -->
-    <section class="section services" id="services">
+    <!-- ========== 서비스 소개 - 송림 동일 (2컬럼 카드) ========== -->
+    <section class="service-intro" id="services">
         <div class="container">
-            <div class="section-header">
-                <span class="section-label">TAX SERVICE</span>
-                <h2 class="section-title">세무 서비스</h2>
-                <p class="section-desc">기장부터 세금신고까지, 대표님의 사업에 필요한<br>모든 세무 서비스를 제공합니다.</p>
+            <div class="service-intro-header">
+                <p>엘림의 다양한 서비스는 <span>One Team</span> 시스템으로<br>관리자의 최상의 만족도를 느끼실 수 있습니다.</p>
             </div>
 
-            <div class="services-grid">
+            <div class="service-cards">
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>기장대리</h3>
-                    <p>매출/매입 장부 기록부터 부가세, 법인세, 소득세 신고까지 원스톱 처리</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>법인세 신고</h3>
-                    <p>법인 결산 및 법인세 신고, 세액공제 검토를 통한 최적의 절세 방안 제시</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>종합소득세</h3>
-                    <p>개인사업자, 프리랜서의 종합소득세 신고 및 절세 컨설팅 제공</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏠</div>
-                    <h3>양도/상속/증여</h3>
-                    <p>부동산 양도, 상속, 증여 관련 세금 신고 및 절세 전략 수립</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>세금환급</h3>
-                    <p>경정청구를 통한 세금 환급, 놓친 공제 항목을 찾아 환급</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>법인설립/전환</h3>
-                    <p>법인설립, 개인사업자 법인전환 등 사업 구조 변경 지원</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== 올인원 서비스 ========== -->
-    <section class="section allinone" id="allinone">
-        <div class="container">
-            <div class="allinone-grid">
-                <div class="allinone-content">
-                    <span class="section-label">ALL-IN-ONE</span>
-                    <h2 class="section-title">올인원 서비스</h2>
-                    <p class="section-desc">엘림세무회계는 세무 서비스를 넘어, 대표님의 사업 성장에 필요한 모든 것을 지원합니다. One Team 시스템으로 최상의 서비스를 제공합니다.</p>
-
-                    <div class="allinone-list">
-                        <div class="allinone-item">
-                            <div class="allinone-item-icon">🔍</div>
-                            <div>
-                                <h4>우리 회사의 문제점 파악</h4>
-                                <p>성장으로 가는 운영 관련 서비스</p>
-                            </div>
-                        </div>
-                        <div class="allinone-item">
-                            <div class="allinone-item-icon">🔄</div>
-                            <div>
-                                <h4>업종 변환 및 법인 전환</h4>
-                                <p>사업자 이윤을 위한 유연한 대처</p>
-                            </div>
-                        </div>
-                        <div class="allinone-item">
-                            <div class="allinone-item-icon">📢</div>
-                            <div>
-                                <h4>사업을 위한 최적의 홍보</h4>
-                                <p>사업 확장을 위한 마케팅 지원</p>
-                            </div>
-                        </div>
-                        <div class="allinone-item">
-                            <div class="allinone-item-icon">🛡️</div>
-                            <div>
-                                <h4>지식재산권 등록</h4>
-                                <p>사업 아이템 보호 서비스</p>
-                            </div>
-                        </div>
+                    <div class="service-card-header">
+                        <h3>메인 서비스</h3>
+                    </div>
+                    <div class="service-card-body">
+                        <ul>
+                            <li>세무 상담 및 장부 작성</li>
+                            <li>급여, 원천세, 4대보험 신고</li>
+                            <li>각종 세무신고 대행</li>
+                            <li>실시간 커뮤니케이션 채널운영</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="allinone-image">
-                    <div class="allinone-image-box">올인원 서비스</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ========== 엘림 피플 ========== -->
-    <section class="section people" id="people">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">ELIM PEOPLE</span>
-                <h2 class="section-title">엘림 피플</h2>
-                <p class="section-desc">대표님의 사업 성공을 위해 함께하는<br>엘림세무회계컨설팅 전문가들입니다.</p>
-            </div>
-
-            <div class="people-grid">
-                <div class="people-card">
-                    <div class="people-photo"></div>
-                    <h4>대표 세무사</h4>
-                    <span>세무사</span>
-                </div>
-                <div class="people-card">
-                    <div class="people-photo"></div>
-                    <h4>팀장</h4>
-                    <span>세무사</span>
-                </div>
-                <div class="people-card">
-                    <div class="people-photo"></div>
-                    <h4>담당자</h4>
-                    <span>세무 전문</span>
-                </div>
-                <div class="people-card">
-                    <div class="people-photo"></div>
-                    <h4>담당자</h4>
-                    <span>회계 전문</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== 요금제 ========== -->
-    <section class="section pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">PRICING</span>
-                <h2 class="section-title">요금제</h2>
-                <p class="section-desc">합리적인 요금으로 전문적인 세무 서비스를 이용하세요.</p>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3 class="pricing-name">스타터</h3>
-                    <div class="pricing-price">11만원<span>/월</span></div>
-                    <p class="pricing-desc">매출 1억 미만 사업자</p>
-                    <ul class="pricing-features">
-                        <li>기장대리</li>
-                        <li>부가세 신고</li>
-                        <li>원천세 신고</li>
-                        <li>4대보험 관리</li>
-                        <li>카카오톡 상담</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="location.href='#contact'">상담 신청</button>
+                <div class="service-plus">
+                    <span>+</span>
                 </div>
 
-                <div class="pricing-card popular">
-                    <h3 class="pricing-name">스탠다드</h3>
-                    <div class="pricing-price">22만원<span>/월</span></div>
-                    <p class="pricing-desc">매출 3억 미만 사업자</p>
-                    <ul class="pricing-features">
-                        <li>스타터 전체 포함</li>
-                        <li>법인세/종합소득세 신고</li>
-                        <li>세액공제 검토</li>
-                        <li>절세 컨설팅</li>
-                        <li>전담 세무사 배정</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="location.href='#contact'">상담 신청</button>
-                </div>
-
-                <div class="pricing-card">
-                    <h3 class="pricing-name">프리미엄</h3>
-                    <div class="pricing-price">별도 협의</div>
-                    <p class="pricing-desc">매출 3억 이상 사업자</p>
-                    <ul class="pricing-features">
-                        <li>스탠다드 전체 포함</li>
-                        <li>세무조사 대응</li>
-                        <li>M&A 자문</li>
-                        <li>VIP 전담팀 배정</li>
-                        <li>24시간 긴급 상담</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="location.href='#contact'">상담 신청</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== 칼럼 ========== -->
-    <section class="section column" id="column">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">COLUMN</span>
-                <h2 class="section-title">칼럼</h2>
-                <p class="section-desc">세무/회계에 관한 유용한 정보를 전해드립니다.</p>
-            </div>
-
-            <div class="column-grid">
-                <div class="column-card">
-                    <div class="column-thumb"></div>
-                    <div class="column-content">
-                        <span class="column-tag">세금</span>
-                        <h3>2024년 달라지는 세법 개정안 총정리</h3>
-                        <p>2024년부터 적용되는 주요 세법 개정 내용을 알려드립니다.</p>
-                        <div class="column-date">2024.01.15</div>
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <h3>무료 부가서비스</h3>
                     </div>
-                </div>
-                <div class="column-card">
-                    <div class="column-thumb"></div>
-                    <div class="column-content">
-                        <span class="column-tag">절세</span>
-                        <h3>개인사업자 절세 전략 5가지</h3>
-                        <p>합법적으로 세금을 줄이는 방법을 소개합니다.</p>
-                        <div class="column-date">2024.01.10</div>
-                    </div>
-                </div>
-                <div class="column-card">
-                    <div class="column-thumb"></div>
-                    <div class="column-content">
-                        <span class="column-tag">법인</span>
-                        <h3>법인전환, 언제가 적기인가요?</h3>
-                        <p>개인사업자의 법인전환 최적 시기를 분석합니다.</p>
-                        <div class="column-date">2024.01.05</div>
+                    <div class="service-card-body">
+                        <ul>
+                            <li>전문 노무사 자문 시스템</li>
+                            <li>기업 경영 & 자금 컨설팅</li>
+                            <li>프리미엄 보고서</li>
+                            <li>세금환급 컨설팅</li>
+                            <li>각종 양식 제공</li>
+                            <li>법인 전환 / 법인 무료 설립</li>
+                            <li>프리미엄 멤버쉽 서비스</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <div class="service-cta">
+                <a href="#contact" class="btn-primary">상담 예약하기 &gt;</a>
+            </div>
         </div>
     </section>
 
-    <!-- ========== 세금환급 ========== -->
-    <section class="section refund" id="refund">
+    <!-- ========== 업종 태그 섹션 - 송림 동일 ========== -->
+    <section class="industry-section" id="industry">
         <div class="container">
-            <span class="section-label">TAX REFUND</span>
-            <h2 class="section-title">세금환급</h2>
-            <p class="section-desc">놓친 세금 공제 항목을 찾아드립니다.<br>경정청구를 통해 최대 5년치 세금을 환급받으세요.</p>
-            <a href="#contact" class="refund-btn">무료 환급 상담 →</a>
+            <div class="industry-header">
+                <h2>이미 경험했고, <span>절세 했습니다.</span></h2>
+                <p>엘림세무회계컨설팅은 다양한 업종과 유형의 세금을 관리했고,<br>즉시 적용 가능한 절세 플랜을 보유하고 있습니다.</p>
+            </div>
+
+            <div class="industry-tags">
+                <div class="industry-tag">병의원 약국</div>
+                <div class="industry-tag">크리에이터</div>
+                <div class="industry-tag">축산/수산</div>
+                <div class="industry-tag">물류업</div>
+                <div class="industry-tag">자동차 수리업</div>
+                <div class="industry-tag">조선업</div>
+                <div class="industry-tag">플랫폼 사업자</div>
+                <div class="industry-tag">재건축·재개발</div>
+                <div class="industry-tag">자동차 부품</div>
+                <div class="industry-tag">무역업</div>
+                <div class="industry-tag">스타트업</div>
+                <div class="industry-tag">엔터테인먼트</div>
+                <div class="industry-tag">수출입업</div>
+                <div class="industry-tag">건설업</div>
+                <div class="industry-tag">도소매</div>
+                <div class="industry-tag">운송업</div>
+            </div>
         </div>
     </section>
 
-    <!-- ========== 상담예약 ========== -->
-    <section class="section contact" id="contact">
+    <!-- ========== 절세 사례 섹션 - 송림 동일 ========== -->
+    <section class="case-section" id="cases">
+        <div class="container">
+            <div class="case-header">
+                <h2><span class="highlight">절세, 대표님도 충분히</span><br>이루실 수 있습니다!</h2>
+                <p>엘림과 파트너를 맺은 사업장의 사례</p>
+            </div>
+
+            <div class="case-grid">
+                <!-- 사례 1: 음식점 -->
+                <div class="case-card">
+                    <div class="case-card-main">
+                        <div class="case-card-info">
+                            <div class="case-card-title">
+                                <h4>음식점 운영</h4>
+                                <div class="tags">
+                                    <span class="tag">#업력 2년차</span>
+                                    <span class="tag">#직원 수 4~5명</span>
+                                </div>
+                            </div>
+                            <div class="case-card-result">
+                                <div class="label">기존 대비</div>
+                                <div class="value">55<span>% 절세!</span></div>
+                            </div>
+                            <ul class="case-card-details">
+                                <li>· 세무 기장 수임 : 2023년 하반기 변경</li>
+                                <li>· 엘림만의 세금 솔루션 : 적격증빙, 비용처리 추가</li>
+                            </ul>
+                        </div>
+                        <div class="case-card-image">
+                            <!-- 일러스트 이미지 플레이스홀더 -->
+                            <div class="placeholder">일러스트<br>이미지</div>
+                            <!-- 실제 이미지: <img src="assets/images/case-1.png" alt="음식점 운영 사례"> -->
+                        </div>
+                    </div>
+                    <div class="case-card-points">
+                        <h5>절세 POINT!</h5>
+                        <ol>
+                            <li>
+                                <strong>1. 적격증빙자료 자료 준비(개선)</strong>
+                                <span>-이전 부가세 세금 신고 대비 400만원 절세</span>
+                            </li>
+                            <li>
+                                <strong>2. 비용처리 항목 추가</strong>
+                                <span>-이전 부가세 세금 신고 대비 100만원 절세</span>
+                            </li>
+                            <li>
+                                <strong>3. 사업 중, 세금 관리 컨설팅</strong>
+                                <span>-세금 감면 누락 항목, 지역 공제 등 추가로 다음 세금 신고 시 200만원 정도 이월공제 가능</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 사례 2: 도매 및 소매업 -->
+                <div class="case-card">
+                    <div class="case-card-main">
+                        <div class="case-card-info">
+                            <div class="case-card-title">
+                                <h4>도매 및 소매업 운영</h4>
+                                <div class="tags">
+                                    <span class="tag">#업력 11년 이내</span>
+                                    <span class="tag">#직원수 3~4명</span>
+                                </div>
+                            </div>
+                            <div class="case-card-result">
+                                <div class="label">기존 대비</div>
+                                <div class="value">48<span>% 절세!</span></div>
+                            </div>
+                            <ul class="case-card-details">
+                                <li>· 세무 기장 수임 : 2023년 하반기 변경</li>
+                                <li>· 엘림만의 세금 솔루션 : 경정청구, 이월공제금,노무개선</li>
+                            </ul>
+                        </div>
+                        <div class="case-card-image">
+                            <div class="placeholder">일러스트<br>이미지</div>
+                        </div>
+                    </div>
+                    <div class="case-card-points">
+                        <h5>절세 POINT!</h5>
+                        <ol>
+                            <li>
+                                <strong>1. 경정청구 진행</strong>
+                                <span>-최근 5년동안 잘못 된 세금 신고 금액 1천만 원 환급</span>
+                            </li>
+                            <li>
+                                <strong>2. 공제 이월액 발생 (차후 세금 신고)</strong>
+                                <span>-총 38,801,230원의 공제 이월액 발생으로 절세 혜택</span>
+                            </li>
+                            <li>
+                                <strong>3. 경영 컨설팅, 노무 컨설팅 진행</strong>
+                                <span>- 2023년 직원 인건비와 관련된 문제 해결 문제 해결로 해결 된 금액 약 2,000만 원</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 절세 금액 요약 -->
+            <div class="case-summary">
+                <div class="case-summary-item">
+                    <div class="label">절세 금액 : 평균</div>
+                    <div class="amount">531<span>만원</span></div>
+                </div>
+                <div class="case-summary-item">
+                    <div class="label">절세 금액 : 평균</div>
+                    <div class="amount">460<span>만원</span></div>
+                </div>
+            </div>
+
+            <!-- 추가 사례 2개 -->
+            <div class="case-grid" style="margin-top: 30px;">
+                <!-- 사례 3: 건설업 -->
+                <div class="case-card">
+                    <div class="case-card-main">
+                        <div class="case-card-info">
+                            <div class="case-card-title">
+                                <h4>건설업 운영</h4>
+                                <div class="tags">
+                                    <span class="tag">#업력 3년 이내</span>
+                                    <span class="tag">#직원수 30명초반</span>
+                                </div>
+                            </div>
+                            <div class="case-card-result">
+                                <div class="label">기존 대비</div>
+                                <div class="value">72<span>% 절세!</span></div>
+                            </div>
+                            <ul class="case-card-details">
+                                <li>· 세무 기장 수임 : 2023년 하반기 변경</li>
+                                <li>· 엘림만의 세금 솔루션 : 경정청구, 비용공제 및 감면 개선</li>
+                            </ul>
+                        </div>
+                        <div class="case-card-image">
+                            <div class="placeholder">일러스트<br>이미지</div>
+                        </div>
+                    </div>
+                    <div class="case-card-points">
+                        <h5>절세 POINT!</h5>
+                        <ol>
+                            <li>
+                                <strong>1. 경정청구 진행</strong>
+                                <span>-최근 5년동안 잘못 된 세금 신고 금액 3천만 원 환급</span>
+                            </li>
+                            <li>
+                                <strong>2. 종합 세무 분야 개선</strong>
+                                <span>-공제 항목 추가, 복식부기장 개선, 비용처리 추가 등 기존 세금에서 약 30% 이상 절감 ( 2천 > 8백만 원 )</span>
+                            </li>
+                            <li>
+                                <strong>3. 경영 컨설팅, 노무 컨설팅 진행</strong>
+                                <span>- 2023년 직원 인건비와 관련된 문제 해결</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 사례 4: 제조업 -->
+                <div class="case-card">
+                    <div class="case-card-main">
+                        <div class="case-card-info">
+                            <div class="case-card-title">
+                                <h4>제조업 운영</h4>
+                                <div class="tags">
+                                    <span class="tag">#업력 3년 이내</span>
+                                    <span class="tag">#직원수 10명초반</span>
+                                </div>
+                            </div>
+                            <div class="case-card-result">
+                                <div class="label">기존 대비</div>
+                                <div class="value">30<span>% 절세!</span></div>
+                            </div>
+                            <ul class="case-card-details">
+                                <li>· 세무 기장 수임 : 2023년 상반기 변경</li>
+                                <li>· 엘림만의 세금 솔루션 : 특별세액감면, 세액공제 추가</li>
+                            </ul>
+                        </div>
+                        <div class="case-card-image">
+                            <div class="placeholder">일러스트<br>이미지</div>
+                        </div>
+                    </div>
+                    <div class="case-card-points">
+                        <h5>절세 POINT!</h5>
+                        <ol>
+                            <li>
+                                <strong>1. 경정청구 진행</strong>
+                                <span>-최근 5년동안 잘못 된 세금 신고 금액 1천만 원 환급</span>
+                            </li>
+                            <li>
+                                <strong>2. 종합 세무 분야 개선</strong>
+                                <span>-공제 항목 추가, 복식부기장 개선, 비용처리 추가 등 기존 세금에서 약 20% 이상 절감 ( 1천 > 8백만 원 )</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 상담예약 섹션 ========== -->
+    <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <span class="section-label">CONTACT</span>
-                    <h2 class="section-title">상담예약</h2>
-                    <p class="section-desc">궁금한 점이 있으시면 언제든 문의해 주세요.<br>전문 세무사가 친절하게 상담해 드립니다.</p>
+                    <h2>상담예약</h2>
+                    <p>궁금한 점이 있으시면 언제든 문의해 주세요.<br>전문 세무사가 친절하게 상담해 드립니다.</p>
 
                     <div class="contact-list">
                         <div class="contact-item">
@@ -1396,7 +1306,7 @@
                             <textarea name="message" placeholder="상담받고 싶은 내용을 적어주세요."></textarea>
                         </div>
                         <button type="submit" class="form-submit">상담 신청하기</button>
-                        <p class="form-notice">* 입력하신 정보는 상담 목적으로만 사용됩니다.</p>
+                        <p class="form-notice">* 입력하신 정보는 상담 목적으로만 사용됩니다. <a href="개인정보처리방침.html">개인정보처리방침</a></p>
                     </form>
                 </div>
             </div>
@@ -1409,19 +1319,21 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <div class="footer-logo-icon">
-                        <div class="bg"></div>
-                        <div class="large"></div>
-                        <div class="small"></div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line-3">
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                     <span class="footer-logo-text">엘림세무회계컨설팅</span>
                 </div>
                 <div class="footer-nav">
                     <a href="#services">세무 서비스</a>
-                    <a href="#allinone">올인원 서비스</a>
-                    <a href="#people">엘림 피플</a>
-                    <a href="#pricing">요금제</a>
-                    <a href="#column">칼럼</a>
-                    <a href="#refund">세금환급</a>
+                    <a href="#industry">업종별 절세</a>
+                    <a href="#cases">절세 사례</a>
+                    <a href="#contact">상담예약</a>
+                    <a href="개인정보처리방침.html">개인정보처리방침</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1450,21 +1362,14 @@
             });
         });
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const headerH = window.innerWidth <= 768 ? 70 : 96;
                     window.scrollTo({
-                        top: target.offsetTop - headerH,
+                        top: target.offsetTop - 72,
                         behavior: 'smooth'
                     });
                 }
