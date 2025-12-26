@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 - 엘림세무회계컨설팅</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1e5ee1;
+            --primary-dark: #1a4fc4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-dark: #212121;
+            --text-gray: #666666;
+            --bg-light: #f5f7fa;
+            --border: #e5e5e5;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        /* 로그인 화면 */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: var(--text-gray);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 14px;
+            text-align: center;
+            margin-top: 16px;
+            display: none;
+        }
+
+        /* 대시보드 */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .login-container.hidden {
+            display: none;
+        }
+
+        /* 헤더 */
+        .admin-header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .admin-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: var(--bg-light);
+        }
+
+        /* 메인 컨텐츠 */
+        .admin-content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stat-change {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .stat-change.up { color: var(--success); }
+        .stat-change.down { color: var(--danger); }
+
+        /* 상담 신청 목록 */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        td {
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-new {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-done {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        .action-btn.view {
+            background: var(--primary);
+            color: white;
+        }
+
+        .action-btn.delete {
+            background: white;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .admin-header {
+                padding: 16px 20px;
+            }
+
+            .admin-content {
+                padding: 20px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 700px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 로그인 화면 -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h1 class="login-title">관리자 로그인</h1>
+            <p class="login-subtitle">엘림세무회계컨설팅 관리자 페이지</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" id="username" placeholder="관리자 아이디" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" placeholder="비밀번호" required>
+                </div>
+                <button type="submit" class="login-btn">로그인</button>
+                <p class="error-msg" id="errorMsg">아이디 또는 비밀번호가 올바르지 않습니다.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- 대시보드 -->
+    <div class="dashboard" id="dashboard">
+        <header class="admin-header">
+            <div class="admin-logo">엘림세무회계 관리자</div>
+            <div class="admin-user">
+                <span>관리자님 환영합니다</span>
+                <button class="logout-btn" onclick="logout()">로그아웃</button>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <!-- 통계 카드 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">이번 달 상담 신청</div>
+                    <div class="stat-value" id="totalInquiries">0</div>
+                    <div class="stat-change up">↑ 전월 대비 12% 증가</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">신규 상담</div>
+                    <div class="stat-value" id="newInquiries">0</div>
+                    <div class="stat-change">대기 중인 상담</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">진행 중</div>
+                    <div class="stat-value" id="progressInquiries">0</div>
+                    <div class="stat-change">상담 진행 중</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">완료</div>
+                    <div class="stat-value" id="doneInquiries">0</div>
+                    <div class="stat-change up">이번 달 완료 건</div>
+                </div>
+            </div>
+
+            <!-- 상담 신청 목록 -->
+            <h2 class="section-title">상담 신청 목록</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>신청일</th>
+                            <th>이름</th>
+                            <th>연락처</th>
+                            <th>상담 유형</th>
+                            <th>상태</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inquiryTable">
+                        <!-- 동적 생성 -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 관리자 계정 (실제 운영시 서버 인증으로 변경)
+        const ADMIN_ID = 'admin';
+        const ADMIN_PW = 'elim2024!';
+
+        // 로컬 스토리지 키
+        const STORAGE_KEY = 'elim_inquiries';
+        const AUTH_KEY = 'elim_admin_auth';
+
+        // 샘플 데이터
+        const sampleData = [
+            { id: 1, date: '2025-12-26', name: '김철수', phone: '010-1234-5678', type: '법인세 상담', status: 'new', message: '법인세 신고 관련 상담 요청드립니다.' },
+            { id: 2, date: '2025-12-25', name: '이영희', phone: '010-2345-6789', type: '세무기장', status: 'progress', message: '월 세무기장 서비스 문의드립니다.' },
+            { id: 3, date: '2025-12-24', name: '박지성', phone: '010-3456-7890', type: '절세 컨설팅', status: 'done', message: '연말정산 절세 방법 상담 부탁드립니다.' },
+            { id: 4, date: '2025-12-23', name: '최민수', phone: '010-4567-8901', type: '창업 상담', status: 'new', message: '1인 법인 설립 관련 상담 요청합니다.' },
+            { id: 5, date: '2025-12-22', name: '정수진', phone: '010-5678-9012', type: '부가세 상담', status: 'progress', message: '부가가치세 신고 대행 문의드립니다.' }
+        ];
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 저장된 데이터 없으면 샘플 데이터 저장
+            if (!localStorage.getItem(STORAGE_KEY)) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleData));
+            }
+
+            // 로그인 상태 확인
+            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+                showDashboard();
+            }
+        });
+
+        // 로그인 폼 처리
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === ADMIN_ID && password === ADMIN_PW) {
+                sessionStorage.setItem(AUTH_KEY, 'true');
+                showDashboard();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        });
+
+        // 대시보드 표시
+        function showDashboard() {
+            document.getElementById('loginContainer').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('active');
+            loadInquiries();
+        }
+
+        // 로그아웃
+        function logout() {
+            sessionStorage.removeItem(AUTH_KEY);
+            location.reload();
+        }
+
+        // 상담 목록 로드
+        function loadInquiries() {
+            const inquiries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            const tbody = document.getElementById('inquiryTable');
+
+            // 통계 업데이트
+            document.getElementById('totalInquiries').textContent = inquiries.length;
+            document.getElementById('newInquiries').textContent = inquiries.filter(i => i.status === 'new').length;
+            document.getElementById('progressInquiries').textContent = inquiries.filter(i => i.status === 'progress').length;
+            document.getElementById('doneInquiries').textContent = inquiries.filter(i => i.status === 'done').length;
+
+            // 테이블 생성
+            tbody.innerHTML = inquiries.map((item, index) => `
+                <tr>
+                    <td>${inquiries.length - index}</td>
+                    <td>${item.date}</td>
+                    <td>${item.name}</td>
+                    <td>${item.phone}</td>
+                    <td>${item.type}</td>
+                    <td><span class="status-badge status-${item.status}">${getStatusText(item.status)}</span></td>
+                    <td>
+                        <button class="action-btn view" onclick="viewDetail(${item.id})">상세</button>
+                        <button class="action-btn delete" onclick="deleteInquiry(${item.id})">삭제</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 상태 텍스트
+        function getStatusText(status) {
+            const statusMap = {
+                'new': '신규',
+                'progress': '진행중',
+                'done': '완료'
+            };
+            return statusMap[status] || status;
+        }
+
+        // 상세 보기
+        function viewDetail(id) {
+            const inquiries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            const item = inquiries.find(i => i.id === id);
+
+            if (item) {
+                alert(`[상담 상세]\n\n이름: ${item.name}\n연락처: ${item.phone}\n상담유형: ${item.type}\n상태: ${getStatusText(item.status)}\n\n문의내용:\n${item.message}`);
+            }
+        }
+
+        // 삭제
+        function deleteInquiry(id) {
+            if (confirm('정말 삭제하시겠습니까?')) {
+                let inquiries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+                inquiries = inquiries.filter(i => i.id !== id);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(inquiries));
+                loadInquiries();
+            }
+        }
+    </script>
+</body>
+</html>
