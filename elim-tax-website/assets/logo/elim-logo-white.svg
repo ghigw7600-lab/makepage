@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80">
+  <!-- 메인 아이콘 - 파란색 사각형 배경 -->
+  <rect x="0" y="5" width="70" height="70" rx="4" fill="#1a5cb8"/>
+
+  <!-- 아이콘 내부 - 민트색 작은 사각형 -->
+  <rect x="35" y="10" width="30" height="30" rx="2" fill="#4ecdc4"/>
+
+  <!-- 아이콘 내부 - 하늘색 큰 사각형 -->
+  <rect x="5" y="25" width="40" height="45" rx="2" fill="#5ba3e0"/>
+
+  <!-- 한글 텍스트 - 흰색 버전 -->
+  <text x="85" y="45" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" font-size="28" font-weight="700" fill="#ffffff">엘림세무회계컨설팅</text>
+
+  <!-- 영문 텍스트 - 흰색 버전 -->
+  <text x="85" y="68" font-family="Arial, sans-serif" font-size="14" font-weight="400" fill="#ffffff" letter-spacing="2">ELIMTAX CONSULTING</text>
+</svg>
